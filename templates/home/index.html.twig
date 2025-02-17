@@ -1,0 +1,267 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="hero-section">
+    <div class="overlay"></div> 
+
+
+    <div class="hero-content">
+        <h1 class="background-text">ART</h1>
+        <h2>Explore Art</h2>
+        <p>Learn various artistic techniques, hone your skills, and unleash your creative potential</p>
+    </div>
+
+
+    <div class="hero-image">
+        <img src="{{ asset('img/img3.jpg') }}" alt="Art">
+    </div>
+</div>
+
+
+
+
+<section class="courses-section">
+    <h2 class="section-title">Our Courses</h2>
+    <div class="underline"></div>
+
+    <div class="carousel-container">
+        <button class="carousel-btn left-btn"><i class="fas fa-chevron-left"></i></button>
+
+        <div class="carousel">
+            <div class="course">
+                <i class="fas fa-paint-brush"></i>
+                <h3>Painting</h3>
+                <p>Learn various painting techniques and styles.</p>
+            </div>
+            <div class="course">
+                <i class="fas fa-pencil-alt"></i>
+                <h3>Sketching</h3>
+                <p>Master the fundamentals of sketching and drawing.</p>
+            </div>
+            <div class="course">
+                <i class="fas fa-camera"></i>
+                <h3>Photography</h3>
+                <p>Discover the art of capturing stunning photographs.</p>
+            </div>
+            <div class="course">
+                <i class="fas fa-gem"></i>  
+                <h3>Handmade Jewelry</h3>
+                <p>Create unique jewelry pieces with your hands.</p>
+            </div>
+            <div class="course">
+                <i class="fas fa-sculpture"></i>
+                <h3>Sculpture</h3>
+                <p>Explore the world of 3D artistic creation.</p>
+            </div>
+        </div>
+
+        <button class="carousel-btn right-btn"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</section>
+<section class="events-section">
+    <h2 class="section-title">Upcoming Events</h2>
+    <div class="underline"></div>
+
+    <div class="events-container">
+        <div class="event-card">
+            <img src="{{ asset('img/img7.jpg') }}" alt="Art Workshop">
+            <div class="event-info">
+                <h3>Creative Painting Workshop</h3>
+                <p class="event-date">📅 12 March 2025</p>
+                <p>Join us for an interactive painting session with renowned artists.</p>
+                <a href="#" class="event-btn">See More</a>
+            </div>
+        </div>
+
+        <div class="event-card">
+            <img src="{{ asset('img/handmadejew.jpg') }}" alt="Jewelry Making">
+            <div class="event-info">
+                <h3>Handmade Jewelry Workshop</h3>
+                <p class="event-date">📅 18 March 2025</p>
+                <p>Learn to craft beautiful jewelry from scratch with our experts.</p>
+                <a href="#" class="event-btn">See More</a>
+            </div>
+        </div>
+
+        <div class="event-card">
+            <img src="{{ asset('img/img6.jpg') }}" alt="Digital Art">
+            <div class="event-info">
+                <h3>Digital Art Masterclass</h3>
+                <p class="event-date">📅 25 March 2025</p>
+                <p>Discover the secrets of digital painting and design.</p>
+                <a href="#" class="event-btn">See More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="feature-client">
+    <h2 class="title">Feature Client</h2>
+    <div class="underline"></div>
+
+    <div class="carousel-container">
+        <button class="carousel-btn left-btn">&lt;</button>
+
+        <div class="carousel">
+            <div class="work-item">
+                <img src="{{ asset('img/img1.jpg') }}" alt="Œuvre 1">
+                <p>Œuvre 1</p>
+            </div>
+            <div class="work-item">
+                <img src="{{ asset('img/flower.jpg') }}" alt="Œuvre 2">
+                <p>Œuvre 2</p>
+            </div>
+            <div class="work-item">
+                <img src="{{ asset('img/img2.jpg') }}" alt="Œuvre 3">
+                <p>Œuvre 3</p>
+            </div>
+            <div class="work-item">
+                <img src="{{ asset('img/img4.jpg') }}" alt="Œuvre 4">
+                <p>Œuvre 4</p>
+            </div>
+             <div class="work-item">
+                <img src="{{ asset('img/img8.jpg') }}" alt="Œuvre 4">
+                <p>Œuvre 4</p>
+            </div>           
+        </div>
+        <button class="carousel-btn right-btn">&gt;</button>
+    </div>
+</section>
+
+<section class="shop-categories">
+    <h2 class="section-title">Shop Our Most Popular Categories</h2>
+    <div class="underline"></div>
+
+    <div class="categories-container">
+        <div class="category-item">
+            <img src="{{ asset('img/candles.jpg') }}" alt="candles" class="category-image">
+            <h3 class="category-title">Decorative Candles</h3>
+        </div>
+        <div class="category-item">
+            <img src="{{ asset('img/he.jpg') }}" alt="hand embroidery" class="category-image">
+            <h3 class="category-title">Hand Embroidery</h3>
+        </div>
+        <div class="category-item">
+            <img src="{{ asset('img/hj.jpg') }}" alt="Jewelry" class="category-image">
+            <h3 class="category-title">Jewelry</h3>
+        </div>
+        <div class="category-item">
+            <img src="{{ asset('img/pd.jpg') }}" alt="pottery dishware" class="category-image">
+            <h3 class="category-title">Pottery Dishware</h3>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials-section">
+    <div class="testimonial-heading">
+        <h2>Create Your Own Art</h2>
+        <p>Come and join us in discovering your creative potential!</p>
+    </div>
+
+    <div class="testimonials">
+        <div class="testimonial-item">
+            <img src="{{ asset('img/John.jpg') }}" alt="Participant 1" class="testimonial-img">
+            <div class="testimonial-text">
+                <p>"The painting classes here changed my life! The instructors are amazing, and I've learned so much."</p>
+                <p class="testimonial-name">John Doe</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-item">
+            <img src="{{ asset('img/jane.jpg') }}" alt="Participant 2" class="testimonial-img">
+            <div class="testimonial-text">
+                <p>"I love how the workshops encourage creativity. I’ve discovered a new side of myself as an artist."</p>
+                <p class="testimonial-name">Jane Smith</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-item">
+            <img src="{{ asset('img/sarra.jpg') }}" alt="Participant 3" class="testimonial-img">
+            <div class="testimonial-text">
+                <p>"I highly recommend this platform for anyone looking to expand their artistic skills. The community is amazing."</p>
+                <p class="testimonial-name">Sara Lee</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="testimonial-item">
+            <img src="{{ asset('img/person4.jpg') }}" alt="Participant 4" class="testimonial-img">
+            <div class="testimonial-text">
+                <p>"The feedback and guidance from instructors have been invaluable to me!"</p>
+                <p class="testimonial-name">Michael Johnson</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-item">
+            <img src="{{ asset('img/person5.jpg') }}" alt="Participant 5" class="testimonial-img">
+            <div class="testimonial-text">
+                <p>"An amazing experience. I have learned so much and made great friends!"</p>
+                <p class="testimonial-name">Lily Adams</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-item">
+            <img src="{{ asset('img/person6.jpg') }}" alt="Participant 6" class="testimonial-img">
+            <div class="testimonial-text">
+                <p>"The workshops helped me improve my skills and confidence as an artist. Highly recommend!"</p>
+                <p class="testimonial-name">David Lee</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="testimonial-navigation">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+    </div>
+</section>
+
+
+
+
+{% endblock %}
+
+
+

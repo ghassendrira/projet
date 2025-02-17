@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg bg-white shadow-sm">
+    <div class="container d-flex flex-column">
+        
+        <!-- 🔹 Ligne 1 : Barre de recherche centrée + Sign In / Panier -->
+        <div class="d-flex w-100 align-items-center justify-content-between py-2">
+            
+  <h1 class="logo">
+    <span class="art">A</span><span class="ium">rtuim</span>
+</h1>
+
+
+<!-- Barre de recherche centrée avec icône à l'intérieur -->
+<form class="search-bar d-flex flex-grow-1 mx-3 position-relative">
+    <input class="form-control rounded-pill px-4 search-input" type="search" placeholder="Rechercher..." aria-label="Search">
+    <span class="search-icon position-absolute">
+        <i class="fas fa-search"></i>
+    </span>
+</form>
+
+
+            <!-- Panier et Connexion -->
+            <div class="d-flex align-items-center">
+             <a class="nav-link text-dark mx-2" href="#"><i class="fa-solid fa-heart"></i>
+                <a class="nav-link text-dark mx-2" href="#"><i class="fas fa-shopping-cart"></i></a>
+                <a class="nav-link text-dark mx-2" href="#"><i class="fas fa-user"></i> Sign In</a>
+            </div>
+        </div>
+
+        <!-- 🔹 Ligne 2 : Menu principal SOUS la barre de recherche -->
+        <div class="nav-container w-100 text-center mt-2">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#"><i class="fas fa-book"></i> Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#"><i class="fas fa-calendar-alt"></i> Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#"><i class="fas fa-store"></i> Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="{{ path('app_post_index') }}"><i class="fa-solid fa-signs-post"></i> Blog</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>

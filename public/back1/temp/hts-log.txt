@@ -1,0 +1,12 @@
+HTTrack3.49-2+htsswf+htsjava launched on Wed, 05 Feb 2025 13:03:02 at https://dashboardkit.io/dashboard/index.html +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://dashboardkit.io/dashboard/index.html -O1 "C:\Users\marwe\Desktop\telpalepro\temp" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+13:03:04	Warning: 	File not parsed, looks like binary: https://dashboardkit.io/robots.txt
+
+HTTrack Website Copier/3.49-2 mirror complete in 58 seconds : 89 links scanned, 88 files written (13477194 bytes overall) [6398389 bytes received at 110317 bytes/sec], 11277349 bytes transferred using HTTP compression in 57 files, ratio 36%, 14.8 requests per connection
+(No errors, 1 warnings, 0 messages)
