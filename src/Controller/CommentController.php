@@ -5,72 +5,61 @@ namespace App\Controller;
 use App\Entity\Comments;
 use App\Entity\Post;
 use App\Form\CommentsType;
-use App\Repository\CommentsRepository;
-use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/comment')]
 class CommentController extends AbstractController
 {
-    private $entityManager;
-
-    public function __construct(
-        EntityManagerInterface $entityManager,
-        PostRepository $postRepository,
-        CommentsRepository $commentsRepository
-    )
+    #[Route('/add/{id}', name: 'comment_add', methods: ['POST'])]
+    public function add(Post $post, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $this->entityManager = $entityManager;
+        $comment = new Comments();
+        $form = $this->createForm(CommentsType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setPost($post);
+            $comment->setCreatedAt(new \DateTime()); 
+            $entityManager->persist($comment);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Commentaire ajouté.');
+        }
+
+        return $this->redirectToRoute('post_index', ['id' => $post->getId()]);
     }
 
-    #[Route('/comment', name: 'app_comment')]
-    public function index(): Response
+    #[Route('/edit/{id}', name: 'comment_edit', methods: ['GET', 'POST'])]
+    public function edit(Comments $comment, Request $request, EntityManagerInterface $entityManager): Response
     {
-        return $this->render('comment/index.html.twig', [
-            'controller_name' => 'CommentController',
+        $form = $this->createForm(CommentsType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+            $this->addFlash('success', 'Commentaire mis à jour.');
+            return $this->redirectToRoute('post_index', ['id' => $comment->getPost()->getId()]);
+        }
+
+        return $this->render('post/show.html.twig', [
+            'comment' => $comment,
+            'comment_form' => $form->createView(),
         ]);
     }
 
-    #[Route('/post/{id}/comment', name: 'comment_post', methods: ['POST'])]
-public function commentPost(int $id, Request $request, EntityManagerInterface $entityManager): Response
-{
-    $post = $entityManager->getRepository(Post::class)->find($id);
-    if (!$post) {
-        return $this->json(['error' => 'Post non trouvé'], 404);
+    #[Route('/delete/{id}', name: 'comment_delete', methods: ['POST'])]
+    public function delete(Comments $comment, EntityManagerInterface $entityManager, Request $request): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $comment->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($comment);
+            $entityManager->flush();
+            $this->addFlash('success', 'Commentaire supprimé.');
+        }
+
+        return $this->redirectToRoute('post_index', ['id' => $comment->getPost()->getId()]);
     }
-
-    $user = $this->getUser();
-    if (!$user) {
-        return $this->json(['error' => 'Utilisateur non authentifié'], 401);
-    }
-
-    $data = json_decode($request->getContent(), true);
-    if (!$data || !isset($data['content']) || empty($data['content'])) {
-        return $this->json(['error' => 'Le contenu du commentaire est vide'], 400);
-    }
-
-    $comment = new Comments();
-    $comment->setContent($data['content']);
-    $comment->setPost($post);
-    //$comment->setUser($user);
-    //$comment->setCreatedAt(new \DateTimeImmutable()); 
-
-    $entityManager->persist($comment);
-    $entityManager->flush();
-
-    return $this->json([
-        'message' => 'Commentaire ajouté avec succès',
-        'comment' => [
-            'id' => $comment->getId(),
-            'content' => $comment->getContent(),
-            'createdAt' => $comment->getCreatedAt()->format('Y-m-d H:i:s'),
-            //'user' => $user->getEmail()
-        ]
-    ], 201);
-}
-
 }

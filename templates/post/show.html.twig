@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h3>Modifier un commentaire</h3>
+{{ form_start(comment_form) }}
+    {{ form_widget(comment_form) }}
+    <button type="submit" class="btn btn-primary">Modifier</button>
+{{ form_end(comment_form) }}
+{% endblock %}

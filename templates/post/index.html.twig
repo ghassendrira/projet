@@ -3,70 +3,133 @@
 {% block title %}Tous les Posts{% endblock %}
 
 {% block body %}
-<div class="wrapper row3">
-    <main class="hoc container clear">
-        <section id="introblocks">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <a href="{{ path('post_new') }}" class="btn mb-3 custom-button">Créer un Nouveau Post</a>
-                    {% if posts is not empty %}
-                        {% for post in posts %}
-                            <div class="card mb-3 post-card">
-                                <div class="card-body">
-                                    <div class="d-flex mb-3">
-
-                                        <div class="avatar me-3">
-                                            <img src="{{ asset('uploads/iamges/avatar.jpeg') }}" alt="Avatar" class="img-fluid rounded-circle" width="40" height="40">
-                                        </div>
-
-                                        <div>
-                                            <h6 class="mb-0">user</h6>
-                                            <small class="text-muted">Publié le {{ post.createdAt|date('d/m/Y H:i') }}</small>
-                                        </div>
-                                    </div>
-
-                                    <p class="post-content">{{ post.content | slice(0, 150) }}...</p>
-
-                                    {% if post.image %}
-                                        <div class="text-center">
-                                            <img src="{{ asset('uploads/images/' ~ post.image) }}" alt="Post Image" class="img-fluid rounded post-image">
-                                        </div>
-                                    {% endif %}
-
-                                    <div class="d-flex justify-content-between mb-3">
-                                        <form action="{{ path('post_like', { id: post.id }) }}" method="POST">
-                                            <button class="btn btn-light" type="submit">
-                                                <i class="fa-solid fa-heart"></i> J'adore ({{ post.likes }})
-                                            </button>
-                                        </form>
-
-                                        <button class="btn btn-light comment-btn" data-post-id="{{ post.id }}">
-                                            <i class="fa fa-comment"></i> Commenter ({{ post.comments | length }})
-                                        </button>
-
-                                        <button class="btn btn-light share-btn">
-                                            <i class="fa-solid fa-share"></i> Partager
-                                        </button>
-                                    </div>
-
-                                    <div class="comments">
-                                        {% for comment in post.comments %}
-                                            <div class="comment">
-                                                <p>{{ comment.content }}</p>
+    <div class="wrapper row3">
+        <main class="hoc container clear">
+            <section id="introblocks">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <a href="{{ path('post_new') }}" class="btn mb-3 custom-button">Créer un Nouveau Post</a>
+                        {% if posts is not empty %}
+                            {% for post in posts %}
+                                <div class="card mb-3 post-card">
+                                    <div class="card-body">
+                                        <div class="d-flex mb-3">
+                                            <div class="avatar me-3">
+                                                <img src="{{ asset('uploads/images/avatar.jpeg') }}" alt="Avatar" class="img-fluid rounded-circle" width="40" height="40">
                                             </div>
-                                        {% else %}
-                                            <p>Aucun commentaire.</p>
-                                        {% endfor %}
+
+                                            <div>
+                                                <h6 class="mb-0">Utilisateur</h6>
+                                                <small class="text-muted">Publié le {{ post.createdAt|date('d/m/Y H:i') }}</small>
+                                            </div>
+
+                                            <div class="dropdown position-absolute top-0 end-0 mt-2 me-2">
+                                                <button class="btn btn-sm dropdown-toggle" id="dropdownMenuButton-{{ post.id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-h"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton-{{ post.id }}">
+                                                    <li>
+                                                        <a class="dropdown-item" href="{{ path('app_post_edit', {'id': post.id}) }}">
+                                                            <i class="fas fa-edit"></i> Modifier
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <form method="POST" action="{{ path('post_delete', {'id': post.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer ce post ?');">
+                                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ post.id) }}">
+                                                            <button class="dropdown-item" type="submit">
+                                                                <i class="fas fa-trash-alt"></i> Supprimer
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <p class="post-content">{{ post.content | slice(0, 150) }}...</p>
+
+                                        {% if post.image %}
+                                            <div class="text-center">
+                                                <img src="{{ asset('uploads/images/' ~ post.image) }}" alt="Post Image" class="img-fluid rounded post-image">
+                                            </div>
+                                        {% endif %}
+
+                                        <div class="d-flex justify-content-between mb-3">
+                                            <form action="{{ path('post_like', { id: post.id }) }}" method="POST">
+                                                <button class="btn btn-light" type="submit">
+                                                    <i class="fa-solid fa-heart"></i> J'adore ({{ post.likes }})
+                                                </button>
+                                            </form>
+
+                                            <button class="btn btn-light comment-btn" data-bs-toggle="collapse" data-bs-target="#comment-section-{{ post.id }}">
+                                                <i class="fa fa-comment"></i> Commenter ({{ post.comments | length }})
+                                            </button>
+
+                                            <button class="btn btn-light share-btn">
+                                                <i class="fa-solid fa-share"></i> Partager
+                                            </button>
+                                        </div>
+
+                                        <!-- Affichage des commentaires -->
+                                        <div class="collapse mt-3" id="comment-section-{{ post.id }}">
+                                            <div class="comments">
+                                                {% for comment in post.comments %}
+                                                    <div class="comment">
+                                                        <div class="d-flex justify-content-between">
+                                                            <!-- Formulaire de modification pour chaque commentaire -->
+                                                            {% if commentForm[comment.id] is defined %}
+                                                                {{ form_start(commentForm[comment.id]) }}
+                                                                <div class="form-group">
+                                                                    {{ form_widget(commentForm[comment.id].content) }}
+                                                                </div>
+                                                                <button type="submit" class="btn btn-primary">
+                                                                    <i class="fa-solid fa-check"></i> Enregistrer
+                                                                </button>
+                                                                {{ form_end(commentForm[comment.id]) }}
+                                                            {% else %}
+                                                           
+                                                                <p>{{ comment.content }}</p>
+                                                                <a href="{{ path('comment_edit', {'id': comment.id}) }}" class="btn btn-sm">
+                                                                    <i class="fas fa-edit"></i>
+                                                                     <form method="POST" action="{{ path('comment_delete', {'id': comment.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer ce commentaire ?');" style="display:inline;">
+                                                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+                                                                    <button class="btn btn-sm" type="submit">
+                                                                        <i class="fas fa-trash-alt"></i> 
+                                                                    </button>
+                                                                </form>
+                                                                </a>
+                                                                
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                {% else %}
+                                                    <p>Aucun commentaire.</p>
+                                                {% endfor %}
+                                            </div>
+
+                                            <!-- Formulaire pour ajouter un commentaire -->
+                                            <form action="{{ path('comment_add', { 'id': post.id }) }}" method="POST">
+                                                {{ form_start(commentForms[post.id]) }}
+                                                
+                                                <div class="form-group">
+                                                    {{ form_widget(commentForms[post.id].content) }}
+                                                </div>
+
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fa-solid fa-paper-plane"></i> 
+                                                </button>
+
+                                                {{ form_end(commentForms[post.id]) }}
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        {% endfor %}
-                    {% else %}
-                        <p class="text-muted text-center">Aucun post trouvé.</p>
-                    {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-muted text-center">Aucun post trouvé.</p>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-        </section>
-    </main>
-</div>
+            </section>
+        </main>
+    </div>
 {% endblock %}

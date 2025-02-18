@@ -30,37 +30,25 @@ class PostController extends AbstractController
         $this->postRepository = $postRepository;
     }
 
-    #[Route('/posts', name: 'app_post_index')]
-    public function index(PostRepository $postRepository, Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/posts', name: 'post_index', methods: ['GET', 'POST'])]
+    public function index(Request $request, EntityManagerInterface $entityManager, PostRepository $postRepository): Response
     {
         $posts = $postRepository->findAll();
-
-        
-        $formData = [];
+    
+        // Créer un formulaire pour chaque post et ne stocker que la vue
+        $commentForms = [];
         foreach ($posts as $post) {
             $comment = new Comments();
-            $comment->setPost($post);
-
-            
             $form = $this->createForm(CommentsType::class, $comment);
-            $form->handleRequest($request);
-
-            
-            if ($form->isSubmitted() && $form->isValid()) {
-                $entityManager->persist($comment);
-                $entityManager->flush();
-            }
-
-            
-            $formData[$post->getId()] = $form->createView();
+            $commentForms[$post->getId()] = $form->createView(); // ✅ Correction ici
         }
-
+    
         return $this->render('post/index.html.twig', [
             'posts' => $posts,
-            'commentForms' => $formData, 
+            'commentForms' => $commentForms, // ✅ Passer les vues des formulaires
         ]);
     }
-
+    
 
     #[Route('/post/new', name: 'post_new')]
     public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
@@ -110,34 +98,41 @@ class PostController extends AbstractController
             $entityManager->persist($post);
             $entityManager->flush();
     
-            return $this->redirectToRoute('app_post_index');
+            return $this->redirectToRoute('post_index');
         }
     
         return $this->render('post/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }
-#[Route('/post/{id}', name: 'post_show')]
-public function show(Post $post, Request $request, EntityManagerInterface $entityManager): Response
-{
-    $comment = new Comments();
-    $form = $this->createForm(CommentsType::class, $comment);
-    $form->handleRequest($request);
+    #[Route('/post/{id}', name: 'post_show', methods: ['GET', 'POST'])]
+    public function show(Post $post, Request $request, EntityManagerInterface $entityManager , PostRepository $postRepository): Response
+    {
+        $posts = $postRepository->findAll();
 
-    if ($form->isSubmitted() && $form->isValid()) {
-        $comment->setPost($post);
-        $entityManager->persist($comment);
-        $entityManager->flush();
+        $comment = new Comments();
 
-        return $this->redirectToRoute('post_show', ['id' => $post->getId()]);
+        $form = $this->createForm(CommentsType::class, $comment);
+    
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setPost($post);
+            $entityManager->persist($comment);
+            $entityManager->flush();
+    
+            $this->addFlash('success', 'Votre commentaire a été ajouté avec succès.');
+    
+            return $this->redirectToRoute('post_show', ['id' => $post->getId()]);
+        }
+    
+        return $this->render('post/show.html.twig', [
+            'post' => $posts,
+            'comment_form' => $form->createView(), 
+        ]);
     }
-
-    return $this->render('post/show.html.twig', [
-        'post' => $post,
-        'comment_form' => $form->createView(),
-    ]);
-}
-
+    
+    
     #[Route('/post/{id}/edit', name: 'app_post_edit', methods: ['GET', 'POST'])]
 public function edit(int $id, Request $request, PostRepository $postRepository, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
 {
@@ -203,25 +198,28 @@ public function delete(int $id, Request $request , PostRepository $postRepositor
 
 
 #[Route('/post/{id}/comment', name: 'post_comment', methods: ['POST'])]
-public function addComment(Request $request, Post $post, EntityManagerInterface $entityManager): Response
+public function comment(Post $post, Request $request, EntityManagerInterface $entityManager): Response
 {
+    // Créer un nouveau commentaire
     $comment = new Comments();
     $form = $this->createForm(CommentsType::class, $comment);
     $form->handleRequest($request);
 
+    // Vérifier si le formulaire est valide
     if ($form->isSubmitted() && $form->isValid()) {
-        $comment->setPost($post); 
+        $comment->setPost($post);
         $entityManager->persist($comment);
         $entityManager->flush();
 
-        return $this->redirectToRoute('app_post_index'); 
+        $this->addFlash('success', 'Commentaire ajouté avec succès.');
+
+        return $this->redirectToRoute('post_index', ['id' => $post->getId()]);
     }
 
-    return $this->render('post/show.html.twig', [
-        'post' => $post,
-        'form' => $form->createView(),
-    ]);
+    return $this->redirectToRoute('post_index', ['id' => $post->getId()]);
 }
+
+
 
 #[Route('/post/{id}/like', name: 'post_like', methods: ['POST'])]
 public function like(int $id, PostRepository $postRepository, EntityManagerInterface $entityManager, Request $request): Response
@@ -232,7 +230,7 @@ public function like(int $id, PostRepository $postRepository, EntityManagerInter
     }
 
     $post->like();
-    $entityManager->persist($post);
+    $entityManager->persist($post); 
     $entityManager->flush();
 
     return $this->redirect($request->headers->get('referer') ?: $this->generateUrl('app_post_index'));

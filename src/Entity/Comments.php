@@ -25,11 +25,14 @@ class Comments
     private ?Post $post = null;
 
     
-
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    #[ORM\Column(type: 'datetime', nullable: false)]
+    private ?\DateTimeInterface $createdAt = null;
     
 
+public function __construct()
+{
+    $this->createdAt = new \DateTime(); // Définit la date actuelle par défaut
+}
     
     
     public function getId(): ?int
@@ -68,7 +71,7 @@ class Comments
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): static
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 

@@ -64,10 +64,13 @@ class Post
         return $this->content;
     }
 
-    public function setContent(string $content): static
+    public function setContent(?string $content): self
     {
+        if ($content === null) {
+            $content='';
+        }
+    
         $this->content = $content;
-
         return $this;
     }
 
