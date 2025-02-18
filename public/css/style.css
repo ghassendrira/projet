@@ -1,0 +1,738 @@
+/* Logo */
+.logo {
+    font-size: 30px; /* Taille du logo */
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Pour le A */
+.logo .art {
+    color: transparent; /* On rend la couleur de base transparente */
+    background: linear-gradient(to right, #000000, #FF69B4); /* Dégradé noir et rose */
+    -webkit-background-clip: text; /* Applique le dégradé uniquement au texte */
+    background-clip: text;
+}
+
+/* Pour les autres caractères */
+.logo .ium {
+    color: #1e1e1e; /* Blanc pour rtum */
+}
+
+
+
+.search-bar {
+    width: 100%; /* Prend toute la largeur disponible */
+    max-width: 700px; /* Limite la largeur à 700px (modifiable selon ton design) */
+    margin: 0 auto; /* Centrer la barre */
+}
+
+/* Champ de texte */
+.search-input {
+    width: 100%; /* Prend toute la largeur disponible */
+    padding-right: 20px; /* Espace pour l'icône */
+}
+
+/* Icône de recherche */
+.search-icon {
+    right: 10px; /* Décale l'icône un peu vers la droite */
+    top: 50%; /* Centre verticalement */
+    transform: translateY(-50%); /* Ajuste précisément le centrage */
+    color: #615e5e; /* Couleur de l'icône */
+}
+
+/* Pour le style de l'icône (optionnel) */
+.search-icon i {
+    font-size: 20px; /* Ajuste la taille de l'icône */
+}
+
+
+
+
+
+
+
+
+
+/* Footer */
+.footer {
+    background-color: rgb(67, 67, 67);
+    color: white;
+    padding: 10px 0; /* Réduit le padding pour un footer plus petit */
+    font-size: 14px; /* Réduit la taille de la police */
+}
+
+.footer h5 {
+    color: #fff;
+    font-weight: bolder;
+    margin-bottom: 5px; /* Réduit l'espacement sous le titre */
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 6px; /* Réduit l'espacement entre les éléments */
+}
+
+.footer ul li a {
+    text-decoration: none;
+    color: #bbb;
+    transition: color 0.3s ease;
+    font-size: 13px; /* Réduit la taille des liens */
+}
+
+.footer ul li a:hover {
+    color: #fff;
+}
+
+
+.newsletter {
+    position: relative;
+    background: url('../img/newsletter.jpg') center/cover no-repeat;
+    padding: 60px 0;
+}
+
+.newsletter::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Effet de flou sombre */
+    backdrop-filter: blur(5px);
+}
+
+.newsletter .container {
+    position: relative;
+    z-index: 2;
+}
+
+.newsletter h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.newsletter-input {
+    width: 70%;
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+    border: none;
+    outline: none;
+}
+
+.newsletter-btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.newsletter-btn:hover {
+    background: #2980b9;
+}
+
+
+/* Social Icons */
+.social-icons {
+    margin: 30px 0;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 20px;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #33A6E0;
+}
+
+/* Bottom links */
+.footer-bottom {
+    padding: 20px 0;
+}
+
+.footer-bottom a {
+    color: #bbb;
+    text-decoration: none;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom a:hover {
+    color: white;
+}
+
+/* Copyright */
+.copyright {
+    color: #777;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+
+/* Section principale */
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    max-width: 100%;
+    margin: auto;
+}
+
+/* Contenu textuel */
+.hero-content {
+    max-width: 50%;
+    color: white;
+    text-align: left;
+}
+
+.hero-content h4 {
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin: 20px 0;
+    opacity: 0.8;
+}
+
+/* Bouton */
+.cta-button {
+    background-color: white;
+    color: black;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: gray;
+    color: white;
+}
+
+
+
+/* SECTION PRINCIPALE */
+.hero-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    width: 100%;
+    background: black; /* Fond noir */
+    overflow: hidden;
+}
+
+/* OVERLAY (Effet sombre) */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Fond noir semi-transparent */
+    z-index: 1;
+}
+
+/* CONTENU TEXTE */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 50%;
+    color: white;
+    padding: 50px;
+}
+
+.hero-content h1 {
+    font-size: 160px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: -40px;
+    left: 0;
+    z-index: 0;
+}
+
+.hero-content h2 {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-top: 20px;
+    opacity: 0.9;
+}
+
+/* IMAGE À DROITE */
+.hero-image {
+    position: relative;
+    max-width: 50%;
+    height: 100vh;
+    overflow: hidden;
+    filter: brightness(200%);
+
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(60%); /* Rend l’image plus sombre */
+}
+
+/* CADRE AUTOUR DE LA SECTION TEXTE */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 60%;
+    color: white;
+    padding: 60px;
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Bordure blanche semi-transparente */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* Effet subtil */
+    margin-bottom: 100px; /* Ajoute un espace au-dessus du cadre */
+}
+
+/* SECTION OUR COURSES */
+.courses-section {
+    text-align: center;
+    padding: 80px 0;
+    background: white;
+}
+
+/* Titre */
+.section-title {
+    font-size: 50px;
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* Soulignement stylisé */
+.underline {
+    width: 120px;
+    height: 5px;
+    background: linear-gradient(to right, black, #ff007f);
+    margin: 10px auto 30px;
+    border-radius: 5px;
+}
+
+/* CONTAINER CAROUSEL */
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 80%;
+    margin: auto;
+}
+
+/* CAROUSEL */
+.carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    width: 100%;
+    padding: 20px;
+    scrollbar-width: none; /* Cache la barre de défilement sur Firefox */
+}
+
+/* Cacher la scrollbar pour Chrome et Edge */
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+/* COURS INDIVIDUELS */
+.course {
+    background: #f9f9f9;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    flex: 0 0 auto; /* Permet au carousel de bien défiler */
+}
+
+.course:hover {
+    transform: scale(1.05);
+}
+
+/* Icônes */
+.course i {
+    font-size: 50px;
+    color: #ff007f;
+    margin-bottom: 10px;
+}
+
+/* Titres des cours */
+.course h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+/* BOUTONS DE NAVIGATION */
+.carousel-btn {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 10px;
+    cursor: pointer;
+    padding: 10px 15px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.left-btn {
+    left: -60px;
+}
+
+.right-btn {
+    right: -60px;
+}
+/* SECTION TITRE */
+.events-section {
+    text-align: center;
+    padding: 80px 0;
+    background: #f8f8f8; /* Fond léger */
+}
+
+/* STYLE DU TITRE */
+.section-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+/* SOULIGNEMENT STYLISÉ */
+.underline {
+    width: 100px;
+    height: 5px;
+    background: linear-gradient(to right, #ff007f, #222);
+    margin: 0 auto 40px;
+}
+
+/* CONTAINER DES ÉVÉNEMENTS */
+.events-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* CARTE D'ÉVÉNEMENT */
+.event-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+}
+
+/* IMAGE */
+.event-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* INFO DE L'ÉVÉNEMENT */
+.event-btn {
+    margin-top: auto; /* Aligne le bouton en bas */
+    align-self: center; /* Centre le bouton horizontalement */
+}
+
+
+.event-info h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.event-date {
+    font-size: 14px;
+    color: #ff007f;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.event-info p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* BOUTON "VOIR PLUS" */
+.event-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: #ff007f;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    
+}
+.event-btn:hover {
+    background: #d6006b;
+}
+
+/* Centrer la section Feature Client */
+.feature-client {
+    text-align: center;
+    padding: 80px 0;
+    background: #fff;
+}
+
+/* Réduit la taille des éléments contenant les images, mais les garde visibles dans le carousel */
+.carousel {
+    display: flex;
+    gap: 20px; /* Espacement entre les images */
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    width: 100%;  /* Assure que le carousel occupe toute la largeur disponible */
+    padding: 20px;
+}
+
+/* Chaque élément contenant une image dans le carousel */
+.carousel .work-item {
+    flex-shrink: 0;  /* Empêche la réduction de la taille de l'élément */
+    width: 250px; /* Taille réduite des éléments contenant les images */
+    height: 350px; /* Une hauteur fixe pour les images */
+    text-align: center;  /* Centrer le texte sous l'image */
+}
+
+/* Ajuster les images à l'intérieur */
+.carousel .work-item img {
+    width: 100%;  /* L'image prend toute la largeur de l'élément parent */
+    height: 100%;  /* L'image prend toute la hauteur de l'élément parent */
+    object-fit: cover;  /* Couvre l'espace sans déformer l'image */
+}
+
+/* BOUTONS DE NAVIGATION */
+.carousel-btn {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 10px;
+    cursor: pointer;
+    padding: 10px 15px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.left-btn {
+    left: -60px;
+}
+
+.right-btn {
+    right: -60px;
+}
+
+.shop-categories {
+    text-align: center;
+    padding: 60px 0;
+}
+
+.shop-categories.section-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.shop-categories .underline {
+    width: 80px;
+    height: 3px;
+    background-color: #000;
+    margin: 0 auto 40px;
+}
+
+.categories-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.category-item {
+    width: 200px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.category-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.category-item:hover img {
+    transform: scale(1.05);
+}
+
+.category-title {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.testimonials-section {
+    padding: 60px 0;
+    background-color: #faf3f3; /* Beige/Rosé background color */
+    color: #333;
+}
+
+.testimonial-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.testimonial-heading h2 {
+    font-size: 48px;  /* Taille plus grande pour le titre */
+    font-weight: bold;
+    color: #68595a;  /* Rosé pour le titre */
+    font-family: 'Courier New', Courier, monospace; /* Style de police différent */
+    text-transform: uppercase;  /* Transformation en majuscules */
+    letter-spacing: 2px;  /* Espacement des lettres */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);  /* Ombre pour un effet de profondeur */
+    margin-bottom: 20px;
+}
+
+.testimonial-heading p {
+    font-size: 20px;  /* Taille plus grande pour le texte */
+    color: #4b4b4b;  /* Couleur légèrement plus foncée pour le texte */
+    font-family: 'Georgia', serif;  /* Changer la police en serif */
+    font-style: italic;  /* Italique pour donner une touche élégante */
+    line-height: 1.6;
+    max-width: 600px;  /* Limiter la largeur pour mieux contrôler l'alignement */
+    margin: 0 auto;
+    text-align: center;  /* Centrer le texte */
+}
+
+
+.testimonials {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.testimonial-item {
+    width: 33.33%; /* 3 témoignages par ligne */
+    padding: 20px;
+    text-align: center;
+    display: none; /* Cache les témoignages par défaut */
+}
+
+.testimonial-item.active {
+    display: block; /* Affiche les témoignages actifs */
+}
+
+.testimonial-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid #b3656e; /* Border in rosé color */
+}
+
+.testimonial-text p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.testimonial-name {
+    font-weight: bold;
+    color: #b3656e;
+    margin-bottom: 10px;
+}
+
+.stars {
+    color: #f1c40f; /* Yellow for stars */
+}
+
+.stars i {
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+/* Points de navigation */
+.testimonial-navigation {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background-color: #333; /* Noir pour le point actif */
+}
+
+@media (max-width: 768px) {
+    .testimonials {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .testimonial-item {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}

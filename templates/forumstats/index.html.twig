@@ -1,0 +1,113 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %} Statistiques du Forum {% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1 class="mb-4 text-center text-secondary">📊 Statistiques du Forum</h1>
+
+    <div class="d-flex justify-content-center flex-wrap">
+
+        <div class="col-md-5 col-sm-12 mb-3">
+            <div class="card border-light shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-muted">👥 Utilisateurs ayant posté</h5>
+                    <h2 class="text-primary fw-bold">50</h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-5 col-sm-12 mb-3 ms-md-3">
+            <div class="card border-light shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-muted">❤️ Utilisateurs ayant liké</h5>
+                    <h2 class="text-success fw-bold">120</h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-5 col-sm-12 mb-3 ms-md-3">
+            <div class="card border-light shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-muted">💬 Utilisateurs ayant Commenté</h5>
+                    <h2 class="text-info fw-bold">75</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <div class="card mt-4 border-light shadow-sm">
+        <div class="card-header bg-light text-dark text-center fw-bold">
+            📌 Visualisation des Statistiques
+        </div>
+        <div class="card-body d-flex justify-content-center">
+            <div class="w-50">
+                <div class="mb-3 text-center"> 
+                    <span class="fw-bold text-muted">👥 Utilisateurs ayant posté (50)</span>
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" role="progressbar" 
+                            style="width: 30%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="120">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 text-center">
+                    <span class="fw-bold text-muted">❤️ Utilisateurs ayant liké (120)</span>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" 
+                            style="width: 100%;" aria-valuenow="120" aria-valuemin="0" aria-valuemax="120">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3 text-center">
+                    <span class="fw-bold text-muted">💬 Utilisateurs ayant Commenter (75)</span>
+                    <div class="progress">
+                        <div class="progress-bar bg-info" role="progressbar" 
+                            style="width: 65%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="120">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card mt-4 border-light shadow-sm">
+        <div class="card-header bg-light text-dark text-center fw-bold">
+            📋 Détails des Statistiques
+        </div>
+        <div class="card-body">
+            <table class="table table-hover text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>📌 Statistique</th>
+                        <th>📊 Valeur</th>
+                        <th>🎯 Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Utilisateurs ayant posté</td>
+                        <td><span class="badge bg-primary fs-6">50</span></td>
+                        <td>💬 30% des utilisateurs</td>
+                    </tr>
+                    <tr class="table-light">
+                        <td>Utilisateurs ayant liké</td>
+                        <td><span class="badge bg-success fs-6">120</span></td>
+                        <td>❤️ 100% d'engagement</td>
+                    </tr>
+                    <tr class="table-light">
+                        <td>Utilisateurs ayant Commenter</td>
+                        <td><span class="badge bg-info fs-6">65</span></td>
+                        <td>💬 65% d'engagement</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
